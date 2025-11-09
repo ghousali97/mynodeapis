@@ -7,6 +7,10 @@ const port = 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+app.use((req,res,next) => {
+    console.log(`${req.method} ${req.hostname} ${req.originalUrl}`);
+    next();
+});
 
 app.use('/public', require('./routes/public'));
 app.use('/private', privateRouter);
